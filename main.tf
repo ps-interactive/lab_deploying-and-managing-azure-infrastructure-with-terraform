@@ -15,7 +15,7 @@ provider "azurerm" {
   resource_provider_registrations = "none"
 }
 
-resource "azurerm_resource_group" "tf_rg" {
+data "azurerm_resource_group" "tf_rg" {
   # TODO: Set the resource group of the current lab
   name = ""
 }
