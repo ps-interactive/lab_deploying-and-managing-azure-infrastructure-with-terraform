@@ -117,7 +117,7 @@ resource "azurerm_linux_virtual_machine" "tf_vm" {
 
     sku = "22_04-lts-gen2"
 
-    version = "latest""
+    version = "latest"
   }
 
   tags = {
