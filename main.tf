@@ -16,8 +16,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "tf_rg" {
-  name     = "terraform-secondary-rg"
-  location = "East US"
+  # TODO: Set the resource group of the current lab
+  name = ""
 }
 
 resource "azurerm_virtual_network" "tf_vnet" {
