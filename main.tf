@@ -95,36 +95,29 @@ resource "azurerm_linux_virtual_machine" "tf_vm" {
   # TODO: Set the admin password
   admin_password = ""
 
-  # TODO: Allow password-based SSH login
-  disable_password_authentication = false
+  # TODO: Allow password-based SSH login by setting as false
+  disable_password_authentication = 
 
   network_interface_ids = [
     azurerm_network_interface.tf_nic.id
   ]
 
   os_disk {
-    # TODO: Give the OS disk a unique name
-    name = ""
+    name = "terraform-secondary-osdisk"
 
-    # TODO: Set caching to "ReadWrite"
-    caching = ""
+    caching = "ReadWrite"
 
-    # TODO: Set storage type to "Standard_LRS"
-    storage_account_type = ""
+    storage_account_type = "Standard_LRS"
   }
 
   source_image_reference {
-    # TODO: Set publisher to "Canonical"
-    publisher = ""
+    publisher = "Canonical"
 
-    # TODO: Set offer to "0001-com-ubuntu-server-jammy"
-    offer = ""
+    offer = "0001-com-ubuntu-server-jammy"
 
-    # TODO: Set sku to "22_04-lts-gen2"
-    sku = ""
+    sku = "22_04-lts-gen2"
 
-    # TODO: Set version to "latest"
-    version = ""
+    version = "latest""
   }
 
   tags = {
