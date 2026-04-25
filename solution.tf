@@ -77,20 +77,17 @@ resource "azurerm_network_interface_security_group_association" "tf_nic_nsg" {
 }
 
 resource "azurerm_linux_virtual_machine" "tf_vm" {
-  name                = "terraform-secondary-vm"
-  resource_group_name = azurerm_resource_group.tf_rg.name
-  location            = azurerm_resource_group.tf_rg.location
-  size                = "Standard_B1s"
-  admin_username      = "azureuser"
+  name                            = "terraform-secondary-vm"
+  resource_group_name             = azurerm_resource_group.tf_rg.name
+  location                        = azurerm_resource_group.tf_rg.location
+  size                            = "Standard_B1s"
+  admin_username                  = "azureuser"
+  admin_password                  = "Learner123!"
+  disable_password_authentication = false
 
   network_interface_ids = [
     azurerm_network_interface.tf_nic.id
   ]
-
-  admin_ssh_key {
-    username   = "azureuser"
-    public_key = file("~/.ssh/tf-lab-key.pub")
-  }
 
   os_disk {
     name                 = "terraform-secondary-osdisk"
