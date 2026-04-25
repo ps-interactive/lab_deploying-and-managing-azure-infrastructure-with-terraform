@@ -83,10 +83,10 @@ resource "azurerm_linux_virtual_machine" "tf_vm" {
   name = ""
 
   # TODO: Reference the Terraform-created resource group name
-  resource_group_name = ""
+  resource_group_name = 
 
   # TODO: Reference the Terraform-created resource group location
-  location = ""
+  location = 
 
   # TODO: Choose a VM size, for example "Standard_B1s"
   size = ""
