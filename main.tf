@@ -23,29 +23,29 @@ data "azurerm_resource_group" "tf_rg" {
 resource "azurerm_virtual_network" "tf_vnet" {
   name                = "terraform-secondary-vnet"
   address_space       = ["10.20.0.0/16"]
-  location            = azurerm_resource_group.tf_rg.location
-  resource_group_name = azurerm_resource_group.tf_rg.name
+  location            = data.azurerm_resource_group.tf_rg.location
+  resource_group_name = data.azurerm_resource_group.tf_rg.name
 }
 
 resource "azurerm_subnet" "tf_subnet" {
   name                 = "terraform-secondary-subnet"
-  resource_group_name  = azurerm_resource_group.tf_rg.name
+  resource_group_name  = data.azurerm_resource_group.tf_rg.name
   virtual_network_name = azurerm_virtual_network.tf_vnet.name
   address_prefixes     = ["10.20.1.0/24"]
 }
 
 resource "azurerm_public_ip" "tf_public_ip" {
   name                = "terraform-secondary-public-ip"
-  location            = azurerm_resource_group.tf_rg.location
-  resource_group_name = azurerm_resource_group.tf_rg.name
+  location            = data.azurerm_resource_group.tf_rg.location
+  resource_group_name = data.azurerm_resource_group.tf_rg.name
   allocation_method   = "Static"
   sku                 = "Standard"
 }
 
 resource "azurerm_network_security_group" "tf_nsg" {
   name                = "terraform-secondary-nsg"
-  location            = azurerm_resource_group.tf_rg.location
-  resource_group_name = azurerm_resource_group.tf_rg.name
+  location            = data.azurerm_resource_group.tf_rg.location
+  resource_group_name = data.azurerm_resource_group.tf_rg.name
 
   security_rule {
     name                       = "AllowSSH"
@@ -62,8 +62,8 @@ resource "azurerm_network_security_group" "tf_nsg" {
 
 resource "azurerm_network_interface" "tf_nic" {
   name                = "terraform-secondary-nic"
-  location            = azurerm_resource_group.tf_rg.location
-  resource_group_name = azurerm_resource_group.tf_rg.name
+  location            = data.azurerm_resource_group.tf_rg.location
+  resource_group_name = data.azurerm_resource_group.tf_rg.name
 
   ip_configuration {
     name                          = "internal"
